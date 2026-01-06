@@ -20,76 +20,83 @@ import HostCampPage from './pages/HostCampPage';
 import MyRequestsPage from './pages/MyRequestsPage';
 import AdminDashboard from './pages/AdminDashboard';
 import SuperAdminDashboard from './pages/SuperAdminDashboard';
+import LoginPage from './pages/LoginPage';
 
 const Navbar: React.FC = () => {
   const location = useLocation();
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
+  // Simulation: Checking if user is on login page to hide the login button
+  const isAuthPage = location.pathname === '/login';
+
   const navItems = [
     { path: '/', label: 'Home' },
     { path: '/dashboard', label: 'Dashboard' },
-    { path: '/require-donor', label: 'Require help' },
-    { path: '/host-camp', label: 'Host Drive' },
-    { path: '/my-requests', label: 'My Requests' },
-    { path: '/admin', label: 'Admin', icon: <ShieldCheck size={14} className="text-red-600" /> },
-    { path: '/super-admin', label: 'SuperAdmin', icon: <ShieldAlert size={14} className="text-red-600" /> },
+    { path: '/about', label: 'About' },
+    { path: '/require-donor', label: 'Require a Donor' },
+    { path: '/host-camp', label: 'Host a Camp' },
   ];
 
   return (
-    <nav className="bg-black text-white sticky top-0 z-50 border-b border-zinc-800">
+    <nav className="bg-[#A61919] text-white sticky top-0 z-50 shadow-lg">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex justify-between items-center h-20">
           <Link to="/" className="flex items-center space-x-3 group">
-            <div className="bg-red-600 p-2 rounded-lg shadow-[0_0_20px_rgba(220,38,38,0.5)] group-hover:scale-110 transition-transform">
-              <Heart className="text-white fill-white" size={24} />
-            </div>
             <div className="flex flex-col leading-none">
               <span className="text-2xl font-black tracking-tighter uppercase italic">SAVIOUR</span>
-              <span className="text-[9px] font-bold text-red-500 uppercase tracking-[0.2em]">Redefining Heroism</span>
+              <span className="text-[9px] font-bold text-red-200 uppercase tracking-[0.2em]">Operational HQ</span>
             </div>
           </Link>
           
-          <div className="hidden lg:flex items-center space-x-1">
+          <div className="hidden lg:flex items-center space-x-8">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`px-4 py-2 text-[10px] font-black uppercase tracking-widest transition-all hover:text-red-500 flex items-center gap-2 ${
-                  location.pathname === item.path ? 'text-red-600' : 'text-zinc-500'
+                className={`text-[11px] font-black uppercase tracking-widest transition-all hover:text-white/70 relative ${
+                  location.pathname === item.path ? 'text-white after:content-[""] after:absolute after:-bottom-2 after:left-0 after:w-full after:h-0.5 after:bg-white' : 'text-white/60'
                 }`}
               >
-                {item.icon}
                 {item.label}
               </Link>
             ))}
           </div>
 
           <div className="flex items-center space-x-4">
+            {!isAuthPage && (
+              <Link 
+                to="/login"
+                className="hidden lg:block bg-[#F8F9FA] text-[#6C757D] px-8 py-3 rounded-lg font-black text-[11px] uppercase tracking-widest hover:bg-white transition-all shadow-sm border border-zinc-200"
+              >
+                Login / Sign up
+              </Link>
+            )}
+            
             <div className="relative">
               <button 
                 onClick={() => setIsProfileOpen(!isProfileOpen)}
-                className="flex items-center p-1 rounded-full border-2 border-zinc-800 hover:border-red-600 transition-colors"
+                className="flex items-center p-1 rounded-full border-2 border-white/20 hover:border-white transition-colors"
               >
-                <UserCircle size={28} className="text-zinc-400" />
+                <UserCircle size={28} className="text-white/80" />
               </button>
               
               {isProfileOpen && (
-                <div className="absolute right-0 mt-3 w-48 bg-zinc-900 border border-zinc-800 rounded-xl shadow-2xl py-2 z-50 overflow-hidden">
-                  <Link to="/profile" className="flex items-center px-4 py-3 text-sm text-zinc-300 hover:bg-zinc-800 font-bold gap-2">
-                    <User size={16} className="text-red-500" />
+                <div className="absolute right-0 mt-3 w-48 bg-white border border-zinc-100 rounded-xl shadow-2xl py-2 z-50 overflow-hidden text-zinc-900">
+                  <Link to="/profile" className="flex items-center px-4 py-3 text-xs text-zinc-700 hover:bg-zinc-50 font-black uppercase tracking-widest gap-2">
+                    <User size={14} className="text-red-600" />
                     Profile
                   </Link>
-                  <Link to="/admin" className="flex items-center px-4 py-3 text-sm text-zinc-300 hover:bg-zinc-800 font-bold gap-2">
-                    <ShieldCheck size={16} className="text-red-500" />
-                    Admin Access
+                  <Link to="/admin" className="flex items-center px-4 py-3 text-xs text-zinc-700 hover:bg-zinc-50 font-black uppercase tracking-widest gap-2">
+                    <ShieldCheck size={14} className="text-red-600" />
+                    Admin
                   </Link>
-                  <Link to="/super-admin" className="flex items-center px-4 py-3 text-sm text-zinc-300 hover:bg-zinc-800 font-bold gap-2">
-                    <ShieldAlert size={16} className="text-red-500" />
+                  <Link to="/super-admin" className="flex items-center px-4 py-3 text-xs text-zinc-700 hover:bg-zinc-50 font-black uppercase tracking-widest gap-2">
+                    <ShieldAlert size={14} className="text-red-600" />
                     SuperAdmin
                   </Link>
-                  <button className="w-full flex items-center px-4 py-3 text-sm text-red-500 hover:bg-zinc-800 font-bold gap-2 text-left border-t border-zinc-800 mt-2">
-                    <LogOut size={16} />
+                  <button className="w-full flex items-center px-4 py-3 text-xs text-red-600 hover:bg-zinc-50 font-black uppercase tracking-widest gap-2 text-left border-t border-zinc-100 mt-2">
+                    <LogOut size={14} />
                     Logout
                   </button>
                 </div>
@@ -97,7 +104,7 @@ const Navbar: React.FC = () => {
             </div>
             
             <button 
-              className="lg:hidden p-2 text-zinc-400 hover:text-white"
+              className="lg:hidden p-2 text-white hover:text-white/70"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -107,19 +114,26 @@ const Navbar: React.FC = () => {
       </div>
       
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-zinc-950 border-b border-zinc-800 py-6 px-6 space-y-4">
+        <div className="lg:hidden bg-[#8B1414] border-t border-white/10 py-6 px-6 space-y-4">
           {navItems.map((item) => (
             <Link
               key={item.path}
               to={item.path}
               onClick={() => setIsMobileMenuOpen(false)}
               className={`block text-xs font-black uppercase tracking-widest ${
-                location.pathname === item.path ? 'text-red-600' : 'text-zinc-500'
+                location.pathname === item.path ? 'text-white underline' : 'text-white/60'
               }`}
             >
               {item.label}
             </Link>
           ))}
+          <Link 
+            to="/login"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="block w-full text-center bg-white text-red-800 py-3 rounded-lg font-black text-xs uppercase tracking-widest"
+          >
+            Login / Sign up
+          </Link>
         </div>
       )}
     </nav>
@@ -129,7 +143,7 @@ const Navbar: React.FC = () => {
 const App: React.FC = () => {
   return (
     <Router>
-      <div className="min-h-screen flex flex-col bg-white text-zinc-900 selection:bg-red-600 selection:text-white">
+      <div className="min-h-screen flex flex-col bg-white text-zinc-900 selection:bg-[#A61919] selection:text-white">
         <Navbar />
         <main className="flex-grow">
           <Routes>
@@ -142,6 +156,7 @@ const App: React.FC = () => {
             <Route path="/my-requests" element={<MyRequestsPage />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/super-admin" element={<SuperAdminDashboard />} />
+            <Route path="/login" element={<LoginPage />} />
           </Routes>
         </main>
         

@@ -3,157 +3,210 @@ import React from 'react';
 import { 
   Zap, 
   Shield, 
-  Cpu, 
   Target, 
   Activity, 
   Globe, 
-  Layers, 
-  Flame,
-  ArrowRight
+  Droplet, 
+  Dna, 
+  Server, 
+  Users,
+  MessageSquare,
+  ChevronRight,
+  Terminal,
+  Cpu,
+  Database,
+  Lock,
+  FileText,
+  AlertCircle,
+  // Added ShieldAlert to fix missing import error
+  ShieldAlert
 } from 'lucide-react';
 
 const AboutPage: React.FC = () => {
-  const pillars = [
+  const protocols = [
     { 
-      title: "Real-time Pulse", 
-      desc: "Our proprietary algorithm tracks regional blood shortages in milliseconds, deploying requests to the nearest matching heroes instantly.",
-      icon: <Activity className="text-red-600" size={32} />
+      id: "P-101",
+      title: "Bio-Sync Matching Algorithm", 
+      desc: "Our matching engine utilizes localized geo-fencing and blood-type compatibility matrices to identify the most eligible donors within a 15km radius of the hospital venue.",
+      specs: ["Latency: < 150ms", "Geo-Precision: ±5m", "Priority: FIFO + Emergency Weighting"]
     },
     { 
-      title: "Bio-Encryption", 
-      desc: "Donor data is secured using advanced cryptographic standards, ensuring absolute confidentiality of the hero network.",
-      icon: <Shield className="text-zinc-900" size={32} />
+      id: "P-102",
+      title: "Zero-Knowledge Encryption", 
+      desc: "Donor identities are hashed and stored using AES-256 standards. Direct contact information is only unmasked once a donor accepts a verified emergency request.",
+      specs: ["Standards: HIPAA Compliant", "Encryption: AES-256", "Auth: Multi-Factor Protocol"]
     },
     { 
-      title: "Gamified Impact", 
-      desc: "We've transformed life-saving into an RPG-style experience. Earn HP (Hero Points) and unlock badges for your contribution.",
-      icon: <Zap className="text-red-600" size={32} />
-    },
-    { 
-      title: "Neural Network", 
-      desc: "Decentralized architecture connects hospitals, camps, and donors into a singular, self-healing lifeline ecosystem.",
-      icon: <Cpu className="text-zinc-900" size={32} />
+      id: "P-103",
+      title: "Regional Node Architecture", 
+      desc: "Saviour operates on a decentralized server network. Each city acts as an independent operational node, ensuring 100% uptime even during regional network failures.",
+      specs: ["Nodes: Localized Clusters", "Redundancy: 3x Mirroring", "Uptime: 99.99% Guaranteed"]
     }
   ];
 
-  const milestones = [
-    { year: '2023', event: 'PROJECT INITIATED', status: 'COMPLETED' },
-    { year: '2024', event: 'NATIONWIDE DEPLOYMENT', status: 'ONGOING' },
-    { year: '2025', event: 'AI PREDICTIVE SHORTAGE ENGINE', status: 'PLANNED' },
+  const systemSpecs = [
+    { label: "Deployment Logic", value: "Smart-Queue v4.2" },
+    { label: "Data Integrity", value: "Blockchain Verified" },
+    { label: "Max Request Capacity", value: "10,000 / sec" },
+    { label: "Encryption Layer", value: "End-to-End TLS 1.3" },
+    { label: "Geo-Fencing Radius", value: "Dynamic (5km - 50km)" },
+    { label: "Identity Verification", value: "Biometric / OTP Sync" }
+  ];
+
+  const lifecycleSteps = [
+    { step: "01", title: "Request Initialization", body: "Requesters provide verified hospital documentation and attender contact details through the mission portal." },
+    { step: "02", title: "Compatibility Filtering", body: "The system identifies all donors with compatible blood groups currently within the operational radius of the hospital." },
+    { step: "03", title: "Direct Broadcast", body: "Push notifications are dispatched to eligible 'Active' donors. The first 10 responders are moved to the 'Mission Ready' state." },
+    { step: "04", title: "Hero Verification", body: "Donors provide their 'Hero Key' (OTP) at the venue, which the requester verifies to confirm physical arrival." },
+    { step: "05", title: "Impact Logging", body: "Upon successful donation, units are updated, the mission is closed, and donor Hero Points (HP) are calculated." }
   ];
 
   return (
-    <div className="bg-white overflow-hidden">
-      {/* Hero Section: The Protocol */}
-      <section className="bg-black text-white py-32 md:py-48 px-6 relative border-b border-zinc-900">
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="inline-flex items-center space-x-3 bg-red-600/10 border border-red-600/30 px-5 py-2 rounded-full text-red-500 text-[9px] font-black uppercase tracking-[0.4em] mb-12 animate-pulse">
-            <Globe size={14} />
-            <span>OPERATIONAL STATUS: GLOBAL CORE v2.5</span>
-          </div>
-          <h1 className="text-7xl md:text-9xl font-black tracking-tighter leading-[0.8] uppercase italic mb-12 select-none">
-            The Science Of<br /><span className="text-red-600">Bio-Heroism.</span>
-          </h1>
-          <p className="max-w-2xl text-lg md:text-xl text-zinc-500 font-medium leading-relaxed">
-            SAVIOUR isn't just a platform; it's a technological protocol designed to eliminate the concept of "unavailability" in critical healthcare.
-          </p>
+    <div className="bg-[#F8F9FA] text-[#212529] selection:bg-red-600 selection:text-white pb-32">
+      {/* Hero: Briefing Header */}
+      <section className="bg-black text-white pt-32 pb-48 px-6 relative border-b border-zinc-800 overflow-hidden">
+        <div className="absolute inset-0 opacity-10 pointer-events-none">
+          <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '50px 50px' }}></div>
         </div>
-        
-        {/* Background Decals */}
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-red-600/5 rounded-full blur-[150px] -mr-96 -mt-96"></div>
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent"></div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="mb-16">
+            <div className="inline-flex items-center space-x-3 bg-red-600/20 border border-red-600/40 px-5 py-2 rounded-full text-red-500 text-[10px] font-black uppercase tracking-[0.4em] mb-12">
+              <Terminal size={14} />
+              <span>OFFICIAL OPERATIONAL BRIEFING</span>
+            </div>
+            <h1 className="text-6xl md:text-[120px] font-black tracking-tighter leading-none uppercase italic mb-12 select-none">
+              SAVIOUR<br /><span className="text-red-600">PROTOCOLS.</span>
+            </h1>
+            <p className="max-w-3xl text-xl md:text-2xl text-zinc-400 font-bold leading-relaxed italic border-l-4 border-red-600 pl-8">
+              A comprehensive technical overview of the Saviour Command System. This document outlines the infrastructure, security, and deployment logistics of our regional blood network.
+            </p>
+          </div>
+        </div>
       </section>
 
-      {/* Innovation Pillars */}
-      <section className="py-32 px-6">
+      {/* Strategic Framework: Technical Stats */}
+      <section className="max-w-7xl mx-auto px-6 -mt-24 mb-32 z-20 relative">
+        <div className="bg-white border border-zinc-200 rounded-[32px] shadow-2xl overflow-hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          {systemSpecs.map((spec, idx) => (
+            <div key={idx} className="p-10 border-r border-b border-zinc-100 last:border-r-0 group hover:bg-zinc-50 transition-colors">
+              <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest mb-2">{spec.label}</p>
+              <p className="text-xl font-black text-zinc-800 uppercase italic tracking-tighter">{spec.value}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* The Protocol: Deep Dive */}
+      <section className="py-24 px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {pillars.map((pillar, idx) => (
-              <div key={idx} className="group p-10 bg-zinc-50 rounded-[40px] border border-zinc-100 hover:bg-black hover:text-white transition-all duration-500 hover:-translate-y-4">
-                <div className="mb-8 w-20 h-20 bg-white rounded-2xl flex items-center justify-center border border-zinc-200 group-hover:bg-zinc-900 group-hover:border-zinc-800 transition-colors shadow-sm">
-                  {pillar.icon}
+          <div className="flex flex-col lg:flex-row gap-20 items-start">
+            <div className="lg:w-1/3 sticky top-32">
+              <span className="text-red-600 font-black text-[11px] uppercase tracking-[0.4em] mb-6 block">Section 01</span>
+              <h2 className="text-5xl font-black text-black tracking-tighter uppercase italic leading-tight mb-8">Infrastructure<br />Architecture.</h2>
+              <p className="text-zinc-500 font-bold leading-relaxed">
+                Saviour is built on a high-availability stack designed to process emergency data with zero latency. Every interaction is governed by strict operational protocols.
+              </p>
+              <div className="mt-12 space-y-4">
+                <div className="flex items-center gap-4 text-zinc-800 font-black text-[10px] uppercase tracking-widest">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div> Network Integrity: Verified
                 </div>
-                <h3 className="text-2xl font-black uppercase italic tracking-tighter mb-4">{pillar.title}</h3>
-                <p className="text-zinc-500 font-medium text-sm leading-relaxed group-hover:text-zinc-400 transition-colors">
-                  {pillar.desc}
-                </p>
+                <div className="flex items-center gap-4 text-zinc-800 font-black text-[10px] uppercase tracking-widest">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div> Node Synchronization: 100%
+                </div>
+              </div>
+            </div>
+            
+            <div className="lg:w-2/3 space-y-10">
+              {protocols.map((p) => (
+                <div key={p.id} className="bg-white p-12 rounded-[40px] border border-zinc-200 shadow-sm">
+                  <div className="flex justify-between items-start mb-8">
+                    <h3 className="text-3xl font-black uppercase italic tracking-tighter">{p.title}</h3>
+                    <span className="text-[10px] font-black bg-zinc-100 text-zinc-400 px-4 py-1.5 rounded-full">{p.id}</span>
+                  </div>
+                  <p className="text-zinc-600 font-medium leading-relaxed mb-10 text-lg">{p.desc}</p>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {p.specs.map((s, i) => (
+                      <div key={i} className="flex items-center gap-3 bg-zinc-50 p-4 rounded-xl border border-zinc-100">
+                         <ChevronRight size={14} className="text-red-600" />
+                         <span className="text-[10px] font-black uppercase tracking-widest text-zinc-800">{s}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Deployment Lifecycle: Step-by-Step */}
+      <section className="py-40 px-6 bg-zinc-950 text-white overflow-hidden relative">
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-red-600/5 rounded-full blur-[150px] -mr-96 -mt-96"></div>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-32">
+             <span className="text-red-600 font-black text-[11px] uppercase tracking-[0.5em] mb-6 block">Operational Flow</span>
+             <h2 className="text-6xl md:text-8xl font-black tracking-tighter leading-none uppercase italic">The Mission<br />Lifecycle.</h2>
+          </div>
+
+          <div className="space-y-4">
+            {lifecycleSteps.map((step) => (
+              <div key={step.step} className="group bg-white/5 border border-white/10 hover:border-red-600/50 p-10 rounded-[40px] transition-all duration-500">
+                <div className="flex flex-col md:flex-row items-center gap-12">
+                   <div className="text-7xl font-black italic text-white/10 group-hover:text-red-600/20 transition-colors">{step.step}</div>
+                   <div>
+                      <h4 className="text-2xl font-black uppercase italic tracking-tighter mb-4">{step.title}</h4>
+                      <p className="text-zinc-500 font-bold leading-relaxed max-w-2xl">{step.body}</p>
+                   </div>
+                   <div className="flex-grow hidden md:block"></div>
+                   <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-zinc-600 group-hover:bg-red-600 group-hover:text-white transition-all">
+                      <ChevronRight size={24} />
+                   </div>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* The Vision: Large Typography Section */}
-      <section className="py-48 px-6 bg-zinc-50">
-        <div className="max-w-7xl mx-auto text-center">
-           <span className="text-red-600 font-black text-[10px] uppercase tracking-[0.6em] mb-12 block">The Mission Manifest</span>
-           <h2 className="text-5xl md:text-8xl font-black text-black tracking-tighter leading-[0.9] uppercase italic mb-16">
-            Eliminating The Wait.<br />
-            <span className="text-zinc-300">Empowering The Soul.</span><br />
-            Saving The Future.
-          </h2>
-          <div className="flex flex-col md:flex-row justify-center items-center gap-12 mt-24">
-             <div className="flex flex-col items-center">
-               <span className="text-5xl font-black italic mb-2">146ms</span>
-               <span className="text-[9px] font-black uppercase tracking-widest text-zinc-400">Response Latency</span>
+      {/* Rules of Engagement: Guidelines */}
+      <section className="py-40 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="bg-white border border-zinc-200 rounded-[48px] p-16 shadow-xl relative overflow-hidden">
+             <div className="absolute top-0 right-0 p-12 opacity-5">
+                <ShieldAlert size={200} className="text-black" />
              </div>
-             <div className="w-px h-16 bg-zinc-200 hidden md:block"></div>
-             <div className="flex flex-col items-center">
-               <span className="text-5xl font-black italic mb-2 text-red-600">100%</span>
-               <span className="text-[9px] font-black uppercase tracking-widest text-zinc-400">Donor Verification</span>
-             </div>
-             <div className="w-px h-16 bg-zinc-200 hidden md:block"></div>
-             <div className="flex flex-col items-center">
-               <span className="text-5xl font-black italic mb-2">0</span>
-               <span className="text-[9px] font-black uppercase tracking-widest text-zinc-400">Processing Fees</span>
+             <div className="relative z-10">
+                <span className="text-red-600 font-black text-[11px] uppercase tracking-[0.4em] mb-8 block">Policy v2.0</span>
+                <h2 className="text-5xl font-black tracking-tighter uppercase italic mb-12">Rules of<br />Engagement.</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+                   <div className="space-y-8">
+                      <h5 className="text-[10px] font-black text-zinc-400 uppercase tracking-widest border-b border-zinc-100 pb-4">Donor Obligations</h5>
+                      <ul className="space-y-4 font-bold text-zinc-600 text-sm leading-relaxed">
+                         <li className="flex items-start gap-4"><AlertCircle size={16} className="text-red-600 mt-1 flex-shrink-0" /> Accuracy in medical history disclosure is mandatory.</li>
+                         <li className="flex items-start gap-4"><AlertCircle size={16} className="text-red-600 mt-1 flex-shrink-0" /> Commitments to requests must be honored to ensure patient safety.</li>
+                         <li className="flex items-start gap-4"><AlertCircle size={16} className="text-red-600 mt-1 flex-shrink-0" /> Physical ID must be presented at the venue for final sync.</li>
+                      </ul>
+                   </div>
+                   <div className="space-y-8">
+                      <h5 className="text-[10px] font-black text-zinc-400 uppercase tracking-widest border-b border-zinc-100 pb-4">Requester Obligations</h5>
+                      <ul className="space-y-4 font-bold text-zinc-600 text-sm leading-relaxed">
+                         <li className="flex items-start gap-4"><AlertCircle size={16} className="text-zinc-900 mt-1 flex-shrink-0" /> Verified hospital requisition forms are required for mission start.</li>
+                         <li className="flex items-start gap-4"><AlertCircle size={16} className="text-zinc-900 mt-1 flex-shrink-0" /> Immediate update of mission status upon unit receipt.</li>
+                         <li className="flex items-start gap-4"><AlertCircle size={16} className="text-zinc-900 mt-1 flex-shrink-0" /> Requesters must provide safe access for arriving heroes.</li>
+                      </ul>
+                   </div>
+                </div>
              </div>
           </div>
         </div>
       </section>
 
-      {/* Architecture Timeline */}
-      <section className="py-48 px-6 bg-black text-white relative">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-24 items-start">
-           <div className="lg:w-1/3 sticky top-32">
-             <span className="text-red-600 font-black text-[10px] uppercase tracking-[0.5em] mb-8 block">Roadmap</span>
-             <h2 className="text-6xl font-black tracking-tighter leading-none uppercase italic mb-8">Evolution<br />Protocol.</h2>
-             <p className="text-zinc-500 font-medium text-sm leading-relaxed">
-               Our journey from a local initiative to a high-frequency bio-response network. We are constantly iterating on the architecture of empathy.
-             </p>
-           </div>
-           
-           <div className="lg:w-2/3 space-y-4 w-full">
-              {milestones.map((m, idx) => (
-                <div key={idx} className="group p-12 bg-zinc-900/50 border border-zinc-800 rounded-[40px] flex items-center justify-between hover:bg-zinc-800 transition-all border-l-4 hover:border-l-red-600">
-                  <div className="space-y-2">
-                    <span className="text-red-600 font-black text-sm tracking-widest">{m.year}</span>
-                    <h4 className="text-3xl font-black tracking-tighter uppercase italic">{m.event}</h4>
-                  </div>
-                  <div className="text-[10px] font-black uppercase tracking-[0.3em] px-6 py-2 border border-zinc-700 rounded-full text-zinc-500 group-hover:text-white group-hover:border-white transition-all">
-                    {m.status}
-                  </div>
-                </div>
-              ))}
-           </div>
-        </div>
-      </section>
-
-      {/* Innovation CTA */}
-      <section className="py-48 px-6 text-center">
-        <div className="max-w-4xl mx-auto bg-zinc-950 text-white rounded-[60px] p-24 relative overflow-hidden shadow-2xl">
-           <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_rgba(220,38,38,0.1),transparent)]"></div>
-           <Flame className="text-red-600 mx-auto mb-10" size={64} />
-           <h3 className="text-5xl md:text-7xl font-black tracking-tighter uppercase italic mb-8 relative z-10">Join The Core.</h3>
-           <p className="text-zinc-400 font-medium mb-12 max-w-lg mx-auto relative z-10">
-             Ready to become part of the most advanced life-saving network ever built?
-           </p>
-           <div className="flex flex-col sm:flex-row justify-center gap-4 relative z-10">
-              <button className="bg-red-600 text-white px-12 py-5 rounded-2xl font-black text-[11px] uppercase tracking-[0.3em] hover:bg-red-700 transition-all shadow-xl group">
-                Initialize Account <ArrowRight size={16} className="inline ml-2 group-hover:translate-x-1 transition-transform" />
-              </button>
-           </div>
-        </div>
-      </section>
+      {/* Final Visual Seal */}
+      <div className="py-24 border-t border-zinc-200 flex flex-col items-center opacity-20">
+         <h4 className="text-[100px] font-black tracking-tighter uppercase italic text-zinc-900 select-none leading-none">SAVIOUR</h4>
+         <p className="text-[10px] font-black uppercase tracking-[1em] text-zinc-900 -mt-2">SYSTEM DOCUMENTATION 2025</p>
+      </div>
     </div>
   );
 };
